@@ -62,10 +62,10 @@ def fbconnect():
     access_token = request.data
 
     app_id = json.loads(
-                        open('fb_client_secrets.json', 'r')
+                        open('/var/www/html/itemcatalog/fb_client_secrets.json', 'r')
                         .read())['web']['app_id']
     app_secret = json.loads(
-                            open('fb_client_secrets.json', 'r')
+                            open('/var/www/html/itemcatalog/fb_client_secrets.json', 'r')
                             .read())['web']['app_secret']
     url = 'https://graph.facebook.com/oauth/access_token?'
     url += 'grant_type=fb_exchange_token&client_id=%s'
@@ -132,7 +132,7 @@ def gconnect():
     code = request.data
 
     try:
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets('/var/www/html/itemcatalog/client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
