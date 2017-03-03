@@ -17,7 +17,7 @@ import requests
 
 import logging
 
-logging.basicConfig(filename='log_filename.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='/var/www/html/itemcatalog/log_filename.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # debug end
 
