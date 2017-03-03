@@ -34,12 +34,16 @@ session = DBSession()
 
 @app.route('/login')
 def showLogin():
+    print 'showLogin called'
     if 'username' in login_session:
         return redirect(url_for('showArtists'))
     else:
         state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                         for x in xrange(32))
+        print state
         login_session['state'] = state
+        print 'login_session:'
+        print login_session
         return render_template('login.html', STATE=state)
 
 # Handles authentication via Facebook - checks login state to verify that the
