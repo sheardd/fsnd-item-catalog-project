@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
  
 from database_setup import Base, User, Artist, Album, Track
  
-engine = create_engine('sqlite:///mitunes.db')
+engine = create_engine('postgresql+psycopg2://catalog:udacity@localhost/mitunes')
 Base.metadata.bind = engine
  
 DBSession = sessionmaker(bind=engine)

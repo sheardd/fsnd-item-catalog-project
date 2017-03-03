@@ -83,7 +83,7 @@ class Track(Base):
        }
 
 
-engine = create_engine('sqlite:///mitunes.db')
+engine = create_engine('postgresql+psycopg2://catalog:udacity@localhost/mitunes')
  
 
 Base.metadata.create_all(engine)

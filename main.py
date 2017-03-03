@@ -23,7 +23,7 @@ APPLICATION_NAME = "MiTunes"
 
 # Connect to Database and create database session
 
-engine = create_engine('sqlite:///mitunes.db')
+engine = create_engine('postgresql+psycopg2://catalog:udacity@localhost/mitunes')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
