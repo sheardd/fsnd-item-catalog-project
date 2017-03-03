@@ -13,13 +13,13 @@ import json
 from flask import make_response
 import requests
 
-# debug start
+# # debug start
 
-import logging
+# import logging
 
-logging.basicConfig(filename='/var/www/html/itemcatalog/log_filename.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging.basicConfig(filename='/var/www/html/itemcatalog/log_filename.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# debug end
+# # debug end
 
 app = Flask(__name__)
 
@@ -42,16 +42,16 @@ session = DBSession()
 
 @app.route('/login')
 def showLogin():
-    logging.debug('showLogin called')
+    print >> environ['wsgi.errors'], "showLogin called"
     if 'username' in login_session:
         return redirect(url_for('showArtists'))
     else:
         state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                         for x in xrange(32))
-        logging.debug(state)
+        print >> environ['wsgi.errors'], state
         login_session['state'] = state
-        logging.debug('login_session:')
-        logging.debug(login_session)
+        print >> environ['wsgi.errors'], "login_session:"
+        print >> environ['wsgi.errors'], login_session
         return render_template('login.html', STATE=state)
 
 # Handles authentication via Facebook - checks login state to verify that the
