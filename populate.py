@@ -11,8 +11,9 @@ session = DBSession()
 
 # User
 
-user1 = User(name = 'User', id= 1)
-
+user1 = User(name='User', id=1, email='david.sheard@hotmail.com')
+session.add(user1)
+session.commit()
 
 # Artists
 
