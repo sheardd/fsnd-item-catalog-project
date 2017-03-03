@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="container">
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flash flex-column bg-grey half-mwidth">
+			{% for message in messages %}
+				<b class="flash-text">{{ message }}</b>
+			{% endfor%}
+			</div>
+		{% endif %}
+	{% endwith %}
+	<div id="artist-reel" class="full-width reel">
+		{% if artists %}
+			{% for artist in artists %}
+				<div class="reel-entry flex-row bg-grey">
+					<h3 class="reel-text-lg">{{artist.name}}</h3>
+					<div class="flex-row reel-button-array">
+						<form action="
+							{{url_for('showDiscography',
+							artist_id = artist.id)}}" class="button">
+							<input type="submit" value="Go To Artist">
+						</form>
+						{% if artist.user_id == session['user_id'] %}
+							<form action="{{url_for('editArtist',
+								artist_id = artist.id)}}" class="button">
+								<input type="submit" value="Edit Artist">
+							</form>
+							<form action="{{url_for('deleteArtist',
+								artist_id = artist.id)}}" class="button">
+								<input type="submit" value="Delete Artist">
+							</form>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<div class="reel-entry flex-row bg-grey">
+				<h3 class="reel-text">You currently have no artists</h3>
+				{% if 'username' in session %}
+					<form action="{{url_for('newArtist')}}" class="button">
+						<input type="submit" value="Add An Artist">
+					</form>
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

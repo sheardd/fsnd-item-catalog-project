@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container">
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flash flex-column bg-grey half-mwidth">
+			{% for message in messages %}
+				<b class="flash-text">{{ message }}</b>
+			{% endfor%}
+			</div>
+		{% endif %}
+	{% endwith %}
+	<div class="flex-row">
+		<div id="discography" class="flex-start-align">
+			<ul class="side-reel bg-grey">
+				<li><b><a href="{{url_for('showDiscography',
+				artist_id = albums[0].artist_id)}}">
+					Back To Discography</a></b></li>
+			{% for album in albums %}
+				<li><a href="{{url_for('showTracklisting',
+				artist_id = album.artist_id, album_id = album.id)}}">
+				{{album.name}}</a></li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div id="tracklisting" class="tq-width reel flex-start-align">
+		{% if tracks %}
+			{% if tracks[0].user_id == session['user_id'] %}
+				{% for track in tracks %}
+					<div class="reel-entry flex-row bg-grey">
+						<p class="reel-text">{%if track.num %}
+							{{track.num}}. 
+						{% endif %}
+						{{track.name}}</p>
+						<div class="flex-row reel-button-array">
+							<form action="{{url_for('showTrack',
+								artist_id = track.artist_id,
+								album_id = track.album_id,
+								track_id = track.id)}}" class="button">
+								<input type="submit" value="Go To Track">
+							</form>
+							<form action="{{url_for('editTrack',
+								artist_id = track.artist_id,
+								album_id = track.album_id,
+								track_id = track.id)}}">
+								<input type="submit" value="Edit Track"
+								class="button">
+							</form>
+							<form action="{{url_for('deleteTrack',
+								artist_id = track.artist_id,
+								album_id = track.album_id,
+								track_id = track.id)}}" class="button">
+								<input type="submit" value="Delete Track">
+							</form>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
+				{% for track in tracks %}
+					<div class="reel-entry flex-row bg-grey">
+						<h3 class="reel-text">{%if track.num %}
+							{{track.num}}. 
+						{% endif %}
+						{{track.name}}</h3>
+						<form action="{{url_for('showTrack',
+							artist_id = track.artist_id,
+							album_id = track.album_id,
+							track_id = track.id)}}" class="button">
+							<input type="submit" value="Go To Track">
+						</form>
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% else %}
+			<div class="reel-entry flex-row bg-grey">
+				<h3 class="reel-text">This album currently has no tracks</h3>
+				{% if album.user_id == session['user_id'] %}
+					<form action="{{url_for('newTrack',
+						artist_id = album.artist_id, album_id = album.id)}}"
+						class="button">
+						<input type="submit" value="Add A Track">
+					</form>
+				{% endif %}
+			</div>
+		{% endif %}
+		</div>
+	</div>
+	{% endblock %}
+</div>

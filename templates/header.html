@@ -1,0 +1,93 @@
+<header id="banner" class="full-width bg-grey">
+	<div id="header" class="flex-row banner-top">
+		<h1 id="main-title" class="title">MiTunes</h1>
+		<div id="banner-img">
+			{% if album %}
+				<img class="banner-img" src="{{album.artwork}}">
+			{% elif artist and albums %}
+				<img class="banner-img" src="{{artist.image}}">
+			{% else %}
+				<img class="logo" src="{{url_for('static',
+					filename='fake_logo.png')}}">
+			{% endif %}
+		</div>
+	</div>
+	<div id="subheader" class="flex-row banner-bottom">
+		<div id="tagline" class="half-mwidth tagline">
+			{% if album %}
+				<p>{{album.artist}} - {{album.name}}</p>
+			{% elif track %}
+				<p>{{track.artist}} - {{track.album}} - {{track.name}}</p>
+			{% elif artist %}
+				<p>{{artist.name}}</p>
+			{% else %}
+				<p>Your Favourite Discography Archive</p>
+			{% endif %}
+		</div>
+		<div id="nav" class="flex-row flex-end-justify half-mwidth">
+			{% if (artists and not artist) and ('username' in session) %}
+				<form action="{{url_for('newArtist')}}" class="button">
+					<input type="submit" value="Add An Artist">
+				</form>
+			{% elif (artist) and (artist.user_id == session['user_id']) %}
+				<form action="{{url_for('editArtist',
+					artist_id = artist.id)}}"
+					class="button">
+					<input type="submit" value="Edit Artist">
+				</form>
+				<form action="{{url_for('deleteArtist',
+					artist_id = artist.id)}}"
+					class="button">
+					<input type="submit" value="Delete Artist">
+				</form>
+				<form action="{{url_for('newAlbum',
+					artist_id = artist.id)}}"
+					class="button">
+					<input type="submit" value="Add An Album">
+				</form>
+			{% elif (track) and (track.user_id == session['user_id']) %}
+				<form action="{{url_for('editTrack',
+					artist_id = track.artist_id, album_id = track.album_id,
+					track_id = track.id)}}" class="button">
+					<input type="submit" value="Edit Track">
+				</form>
+				<form action="{{url_for('deleteTrack',
+					artist_id = track.artist_id, album_id = track.album_id,
+					track_id = track.id)}}" class="button">
+					<input type="submit" value="Delete Track">
+				</form>
+			{% elif (tracks) and (tracks[0].user_id == session['user_id']) %}
+				<form action="{{url_for('editAlbum',
+					artist_id = tracks[0].artist_id,
+					album_id = tracks[0].album_id)}}"
+					class="button">
+					<input type="submit" value="Edit Album">
+				</form>
+				<form action="{{url_for('deleteAlbum',
+					artist_id = tracks[0].artist_id,
+					album_id = tracks[0].album_id)}}"
+					class="button">
+					<input type="submit" value="Delete Album">
+				</form>
+				<form action="{{url_for('newTrack',
+					artist_id = tracks[0].artist_id,
+					album_id = tracks[0].album_id)}}"
+					class="button">
+					<input type="submit" value="Add A Track">
+				</form>
+			{% endif %}
+			{% if 'username' not in session %}
+				<form action="{{url_for('showLogin')}}">
+					<input type="submit" value="Sign In" class="button">
+				</form>
+			{% else %}
+				<form action="{{url_for('disconnect')}}">
+					<input type="submit" value="Sign Out" class="button">
+				</form>
+			{% endif %}
+			<form action="{{url_for('showArtists')}}">
+				<input type="submit" value="Home" class="button">
+			</form>
+		</div>
+	</div>
+</header>

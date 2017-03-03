@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="flex-row flex-start-justify full-width left-padding-sml">
+	<div id="tracklisting">
+		<ul class="side-reel bg-grey flex-start-align">
+		<li><b><a href="{{url_for('showTracklisting',
+			artist_id = tracks[0].artist_id, album_id = tracks[0].album_id)}}">
+			Back To Tracklisting</a></b></li>
+		{% for t in tracks %}
+			<li><a href="{{url_for('showTrack', artist_id = t.artist_id,
+			album_id = t.album_id, track_id = t.id)}}">
+			{{t.name}}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+
+	<div id="track" class="track-info bg-grey flex-start-align">
+		<h3>{{track.num}}</h3>
+		<ul class="track-info-inner">
+			<li>Title: {{track.name}}</li>
+			<li>Artist: {{track.artist}}</li>
+			<li>Album: {{track.album}}</li>
+		</ul>
+	</div>
+</div>
+
+{% endblock %}

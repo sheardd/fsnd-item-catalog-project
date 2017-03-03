@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700'
+  rel='stylesheet' type='text/css'>
+    <link rel=stylesheet type=text/css
+      href="{{ url_for('static', filename='style.css') }}">
+  <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+  </script>
+
+<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+
+<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
+
+</head>
+<body>
+<div id="content" class="flex-column">
+{% include "header.html" %}
+    <script id="facebook-sdk">
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1352371824785960',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+      // Here we run a very simple test of the Graph API after login is
+      // successful.  See statusChangeCallback() for when this call is made.
+      function sendTokenToServer() {
+        var access_token = FB.getAuthResponse()['accessToken'];
+        // console.log(access_token)
+        // console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          // console.log('Successful login for: ' + response.name);
+         $.ajax({
+          type: 'POST',
+          url: '/fbconnect?state={{STATE}}',
+          processData: false,
+          data: access_token,
+          contentType: 'application/octet-stream; charset=utf-8',
+          success: function(result) {
+            // Handle or verify the server response if necessary.
+            if (result) {
+              $('#sign-in').addClass('display-none');
+        	  $('#result').removeClass('display-none');
+              $('#result').html(result)
+             setTimeout(function() {
+              window.location.href = "/artists";
+             }, 4000); 
+          } else {
+            $('#result').html(
+              'Failed to make a server-side call.' +
+              'Check your configuration and console.');
+             }
+          }
+      });
+        });
+      }
+    </script>
+
+    <div id="sign-in"
+      class="form login bg-grey half-mwidth flex-column flex-center-justify">
+	    <div id="facebook-sign-in"
+        class="fb-login-button flex-center-align" data-max-rows="1"
+        data-size="large" data-show-faces="false" data-auto-logout-link="false"
+        scope="public_profile,email" onlogin="sendTokenToServer();">
+          Sign In
+      </div>
+
+	    <div id="google-sign-in" class="flex-center-align">
+	      <span class="g-signin"
+	        data-scope="openid email"
+	        data-clientid="728415800460-kh2nujhjf1bbpo1m1t24nigqhq2u0oic.apps.googleusercontent.com"
+	        data-redirecturi="postmessage"
+	        data-accesstype="offline"
+	        data-cookiepolicy="single_host_origin"
+	        data-callback="signInCallback"
+	        data-approvalprompt="force">
+	      </span>
+	    </div>
+    </div>
+    <div id="result"
+      class="form login bg-grey half-mwidth flex-column flex-center-justify display-none">  
+    </div>
+</div>
+    <script id="google-callback">
+    function signInCallback(authResult) {
+      if (authResult['code']) {
+        // Hide the sign-in button now that the user is authorized
+        $('#sign-in').addClass('display-none');
+        $('#result').removeClass('display-none');
+        // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+        $.ajax({
+          type: 'POST',
+          url: '/gconnect?state={{STATE}}',
+          processData: false,
+          data: authResult['code'],
+          contentType: 'application/octet-stream; charset=utf-8',
+          success: function(result) {
+            // Handle or verify the server response if necessary.
+            if (result) {
+              $('#result').html(result)
+             setTimeout(function() {
+              window.location.href = "/artists";
+             }, 4000);
+          } else if (authResult['error']) {
+        console.log('There was an error: ' + authResult['error']);
+      } else {
+            $('#result').html(
+              'Failed to make a server-side call.' +
+              'Check configuration and console.'
+              );
+             }
+          }
+      }); } }
+    </script>
+
+  </body>
+
+</html>

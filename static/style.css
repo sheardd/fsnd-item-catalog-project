@@ -1,0 +1,218 @@
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+html {
+	width: 100%;
+}
+body {
+	margin: 0;
+	font-family: 'Roboto', serif;
+}
+
+header {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+a {
+	color: black;
+	text-decoration: underline;
+}
+
+li {
+	margin-bottom: 8px;
+}
+
+input[type="text"] {
+	float: right;
+}
+
+label {
+	margin-right: 15px;
+	float: left;
+}
+
+.container {
+	max-width: 960px;
+	width: 90%;
+}
+
+.flex-column {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.flex-row {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.flex-start-justify {
+	justify-content: flex-start;
+}
+
+.flex-center-justify {
+	justify-content: center;
+}
+
+.flex-end-justify {
+	justify-content: flex-end;
+}
+
+.flex-start-align {
+	align-self: flex-start;
+}
+
+.flex-center-align {
+	align-self: center;
+}
+
+.half-mwidth {
+	max-width: 50%;
+}
+
+.tq-width {
+	width: 75%;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.title {
+	border: 2px solid black;
+	padding: 10px;
+	font-size: 2.5em;
+}
+
+.logo {
+	max-width: 125px;
+}
+
+.banner-img {
+	max-width: 160px;
+}
+
+.banner-top {
+	margin-top: 25px;
+	padding-top: 10px;
+}
+
+.banner-bottom {
+	margin-top: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 2px solid white;
+}
+
+.left-padding-sml {
+	padding-left: 5%
+}
+
+.tagline {
+	font-size: 1.4em;
+}
+
+.tagline p {
+	margin: 0;
+}
+
+.no-margin {
+	margin-bottom: 0;
+}
+
+.reel, .track-info {
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-top: 35px;
+}
+
+.track-info {
+	margin-left: 5%;
+}
+
+.reel-entry {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.reel-text-lg, .reel-text {
+	font-size: 1.2em;
+	padding: 5px 16px;
+	font-weight: normal;
+}
+
+.reel-text {
+	font-weight: 300;
+}
+
+.reel-button-array {
+	padding-left: 16px;
+	min-width: 275px;
+	justify-content: flex-end;
+}
+
+.button {
+	margin-right: 5px;
+}
+
+.side-reel, .track-info-inner {
+	list-style: none;
+	padding: 14px;
+}
+
+.side-reel {
+	margin-top: 5vh;
+}
+
+.bg-grey {
+	background-color: #eaeaea;
+}
+
+.form {
+	padding: 10%;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: flex-start
+}
+
+.form * {
+	margin-bottom: 10px;
+}
+
+.delete-text {
+	font-weight: 400;
+}
+
+.login {
+	height: 350px;
+}
+
+.display-none {
+	display: none;
+}
+
+.login-img {
+	max-width: 200px;
+	margin-left: 15px;
+	margin-right: 15px;
+	border-radius: 10%;
+}
+
+.flash {
+	margin: 40px auto 0 auto;
+	padding: 10px 5px;
+
+}
+.flash-text {
+	text-align: center;
+}

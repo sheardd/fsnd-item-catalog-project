@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="form bg-grey half-mwidth flex-column">
+	<h3 class="delete-text">Are you sure you want to delete {{track.name}} by 
+	{{track.artist}}? This
+	 cannot be undone.</h3>
+	<div id="deleteform" >
+		<form action="{{url_for('deleteTrack', artist_id = track.artist_id,
+			album_id = track.album_id, track_id = track.id)}}"
+			method='POST'>
+			<input type="submit" value="Delete">
+		</form>
+		<form action="{{url_for('showTracklisting',
+			artist_id = track.artist_id, album_id = track.album_id)}}">
+			<input type="submit" value="Exit Without Saving">
+		</form>
+	</div>
+</div>
+
+{% endblock %}

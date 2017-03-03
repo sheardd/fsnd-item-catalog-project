@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container">
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flash flex-column bg-grey half-mwidth">
+			{% for message in messages %}
+				<b class="flash-text">{{ message }}</b>
+			{% endfor%}
+			</div>
+		{% endif %}
+	{% endwith %}
+	<div class="flex-row">
+		<div id="artists" class="flex-start-align">
+			<ul class="side-reel bg-grey">
+			<li><b><a href="{{url_for('showArtists')}}">
+				Back To Artists</a></b></li>
+			{% for artist in artists %}
+				<li><a href="{{url_for('showDiscography',
+					artist_id = artist.id)}}">
+				{{artist.name}}</a></li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div id="discography" class="reel tq-width flex-start-align">
+		{% if albums %}
+			{% if albums[0].user_id == session['user_id'] %}
+				{% for album in albums %}
+					<div class="reel-entry flex-row bg-grey">
+						<h3 class="reel-text-lg">{{album.name}}</h3>
+						<div class="flex-row reel-button-array">
+							<form action="{{url_for('showTracklisting',
+								artist_id = album.artist_id,
+								album_id = album.id)}}" class="button">
+								<input type="submit" value="Go To Album">
+							</form>
+							<form action="{{url_for('editAlbum',
+								artist_id = album.artist_id,
+								album_id = album.id)}}" class="button">
+								<input type="submit" value="Edit Album">
+							</form>
+							<form action="{{url_for('deleteAlbum',
+								artist_id = album.artist_id,
+								album_id = album.id)}}" class="button">
+								<input type="submit" value="Delete Album">
+							</form>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
+				{% for album in albums %}
+					<div class="reel-entry flex-row bg-grey">
+						<h3 class="reel-text">{{album.name}}</h3>
+						<div class="flex-row reel-button-array">
+							<form action="{{url_for('showTracklisting',
+								artist_id = album.artist_id,
+								album_id = album.id)}}" class="button">
+								<input type="submit" value="Go To Album">
+							</form>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% else %}
+			<div class="reel-entry flex-row bg-grey">
+				<h3 class="reel-text">This artist currently has no albums</h3>
+				{% if artist.user_id == session['user_id'] %}
+					<form action="{{url_for('newAlbum',
+						artist_id = artist.id)}}" class="button">
+						<input type="submit" value="Add An Album">
+					</form>
+				{% endif %}
+			</div>
+		{% endif %}
+		</div>
+	</div>
+<div class="container">
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="form bg-grey half-mwidth flex-column">
+	<div id="deleteform">
+		<h3 class="delete-text">Are you sure you want to delete {{artist.name}}?
+			This cannot be undone.</h3>
+		<form action="{{url_for('deleteArtist', artist_id = artist.id)}}"
+			method='POST'>
+			<input type="submit" value="Delete">
+		</form>
+		<form action="{{url_for('showArtists')}}">
+			<input type="submit" value="Exit Without Saving">
+		</form>
+	</div>
+</div>
+
+{% endblock %}

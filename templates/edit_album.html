@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container">
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flash flex-column bg-grey half-mwidth">
+			{% for message in messages %}
+				<b class="flash-text">{{ message }}</b>
+			{% endfor%}
+			</div>
+		{% endif %}
+	{% endwith %}
+	<div id="edititem" class="form bg-grey half-mwidth flex-column">
+		<form action="{{url_for('editAlbum', artist_id = album.artist_id,
+		album_id = album.id)}}"
+		method='POST'>
+			<div class="field">
+				<label for="albumname">Album Name:</label>
+				<input type="text" name='name' id="albumname"
+					placeholder="{{album.name}}" value="{{album.name}}">
+			</div>
+			<div class="field">
+				<label for="albumyear">Album Year:</label>
+				<input type="text" name='year' id="albumyear"
+					placeholder="{{album.year}}" value="{{album.year}}">
+			</div>
+			<div class="field">
+				<label for="albumgenre">Album Genre:</label>
+				<input type="text" name='genre' id="albumgenre"
+					placeholder="{{album.genre}}" value="{{album.genre}}">
+			</div>
+			<div class="field">
+				<label for="albumartwork">Artist Artwork:</label>
+				<input type="text" name='artwork' id="albumartwork"
+				placeholder="{{album.artwork}}" value="{{album.artwork}}">
+			</div>
+			<input type="submit" value='Update'>
+		</form>
+		<form action="{{url_for('showDiscography',
+			artist_id = album.artist_id, album_id = album.id)}}">
+			<input type="submit" value="Exit Without Saving">
+		</form>
+	</div>
+</div>
+{% endblock %}
