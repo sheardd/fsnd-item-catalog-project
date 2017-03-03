@@ -18,7 +18,7 @@ app = Flask(__name__)
 # Establish client secrets for Google+
 
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open('/var/www/html/itemcatalog/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "MiTunes"
 
 # Connect to Database and create database session
