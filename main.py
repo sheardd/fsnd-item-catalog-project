@@ -13,14 +13,6 @@ import json
 from flask import make_response
 import requests
 
-# # debug start
-
-# import logging
-
-# logging.basicConfig(filename='/var/www/html/itemcatalog/log_filename.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-
-# # debug end
-
 app = Flask(__name__)
 
 # Establish client secrets for Google+
@@ -42,16 +34,12 @@ session = DBSession()
 
 @app.route('/login')
 def showLogin():
-    print >> environ['wsgi.errors'], "showLogin called"
     if 'username' in login_session:
         return redirect(url_for('showArtists'))
     else:
         state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                         for x in xrange(32))
-        print >> environ['wsgi.errors'], state
         login_session['state'] = state
-        print >> environ['wsgi.errors'], "login_session:"
-        print >> environ['wsgi.errors'], login_session
         return render_template('login.html', STATE=state)
 
 # Handles authentication via Facebook - checks login state to verify that the
@@ -1049,4 +1037,4 @@ def removeTrack(track):
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=5000)
