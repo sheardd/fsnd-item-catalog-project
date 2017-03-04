@@ -336,47 +336,47 @@ session.commit()
 
 
 
-track65 = Track(user_id = 1, name = 'Tautou', id = 65, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 1, artist_id = 3, album_id = 7)
+track65 = Track(user_id = 1, name = 'Tautou', id = 65, artist = 'Brand New', album = 'Deja Entendu', num = 1, artist_id = 3, album_id = 7)
 session.add(track65)
 session.commit()
 
-track66 = Track(user_id = 1, name = 'Sic Transit Gloria... Glory Fades', id = 66, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 2, artist_id = 3, album_id = 7)
+track66 = Track(user_id = 1, name = 'Sic Transit Gloria... Glory Fades', id = 66, artist = 'Brand New', album = 'Deja Entendu', num = 2, artist_id = 3, album_id = 7)
 session.add(track66)
 session.commit()
 
-track67 = Track(user_id = 1, name = 'I Will Play My Game Beneath The Spin Light', id = 67, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 3, artist_id = 3, album_id = 7)
+track67 = Track(user_id = 1, name = 'I Will Play My Game Beneath The Spin Light', id = 67, artist = 'Brand New', album = 'Deja Entendu', num = 3, artist_id = 3, album_id = 7)
 session.add(track67)
 session.commit()
 
-track68 = Track(user_id = 1, name = "Okay I Belive You, But My Tommy Gun Don't", id = 68, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 4, artist_id = 3, album_id = 7)
+track68 = Track(user_id = 1, name = "Okay I Believe You, But My Tommy Gun Don't", id = 68, artist = 'Brand New', album = 'Deja Entendu', num = 4, artist_id = 3, album_id = 7)
 session.add(track68)
 session.commit()
 
-track69 = Track(user_id = 1, name = 'The Quiet Things That No One Ever Knows', id = 69, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 5, artist_id = 3, album_id = 7)
+track69 = Track(user_id = 1, name = 'The Quiet Things That No One Ever Knows', id = 69, artist = 'Brand New', album = 'Deja Entendu', num = 5, artist_id = 3, album_id = 7)
 session.add(track69)
 session.commit()
 
-track70 = Track(user_id = 1, name = "The Boy Who Blocked His Own Shot", id = 70, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 6, artist_id = 3, album_id = 7)
+track70 = Track(user_id = 1, name = "The Boy Who Blocked His Own Shot", id = 70, artist = 'Brand New', album = 'Deja Entendu', num = 6, artist_id = 3, album_id = 7)
 session.add(track70)
 session.commit()
 
-track71 = Track(user_id = 1, name = 'Jaws Theme Swimming', id = 71, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 7, artist_id = 3, album_id = 7)
+track71 = Track(user_id = 1, name = 'Jaws Theme Swimming', id = 71, artist = 'Brand New', album = 'Deja Entendu', num = 7, artist_id = 3, album_id = 7)
 session.add(track71)
 session.commit()
 
-track72 = Track(user_id = 1, name = 'Me vs. Maradonna vs. Elvis', id = 72, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 8, artist_id = 3, album_id = 7)
+track72 = Track(user_id = 1, name = 'Me vs. Maradonna vs. Elvis', id = 72, artist = 'Brand New', album = 'Deja Entendu', num = 8, artist_id = 3, album_id = 7)
 session.add(track72)
 session.commit()
 
-track73 = Track(user_id = 1, name = 'Guernica', id = 73, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 9, artist_id = 3, album_id = 7)
+track73 = Track(user_id = 1, name = 'Guernica', id = 73, artist = 'Brand New', album = 'Deja Entendu', num = 9, artist_id = 3, album_id = 7)
 session.add(track73)
 session.commit()
 
-track74 = Track(user_id = 1, name = 'Good To Know That If I Ever Need Attention, All I Have To Do Is Die', id = 74, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 10, artist_id = 3, album_id = 7)
+track74 = Track(user_id = 1, name = 'Good To Know That If I Ever Need Attention, All I Have To Do Is Die', id = 74, artist = 'Brand New', album = 'Deja Entendu', num = 10, artist_id = 3, album_id = 7)
 session.add(track74)
 session.commit()
 
-track75 = Track(user_id = 1, name = "Play Crack The Sky", id = 75, artist = 'Brand New', album = 'The Devil and God Are Raging Inside Me', num = 11, artist_id = 3, album_id = 7)
+track75 = Track(user_id = 1, name = "Play Crack The Sky", id = 75, artist = 'Brand New', album = 'Deja Entendu', num = 11, artist_id = 3, album_id = 7)
 session.add(track75)
 session.commit()
 
