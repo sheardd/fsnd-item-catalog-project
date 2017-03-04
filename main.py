@@ -915,8 +915,11 @@ def createAlbum(form, login_session, artist):
 
 
 def createTrack(form, login_session, album):
+    trackNum = form['number']
+    if len(trackNum) == 0:
+        trackNum = 0
     newTrack = Track(name=form['name'],
-                     num=form['number'],
+                     num=trackNum,
                      artist=album.artist,
                      album=album.name,
                      artist_id=album.artist_id,
